@@ -375,30 +375,33 @@ procedure TForm3.Button1Click(Sender: TObject);
 var
   DestFile, SourceFile: string;
   compara: string;
+  var Pressed: TCaption;
 
 begin
   { consta en 3 rutinas ,
-    dado que cada boton llega a evento button1 click, entonces este se encarga de 
+    dado que cada boton llega a evento button1 click, entonces este se encarga de
     comparar  en 3 rutinas
-    
+
     rutina1:
     el boton que ha sido presionado
     compara a traves de un sender,
-    esto es almacenado en la variable compara si el sender es boton1, 
+    esto es almacenado en la variable compara si el sender es boton1,
     guarda el caption del boton1
-    
+
 
     rutina2:
     compara el nombre del caption segun el boton presionado, este establece 2 datos
     el primero es el link de descarga(web de ricardo)
     y el segundo es el formato que trabaja (7z)
-    
+
     rutina3:
     es la descarga con los datos anteriores (requiere internet)
 
   }
-
-  if Sender = Button1 then
+Pressed:=(Sender as TButton).Caption  ;
+compara :=Pressed ;
+ {
+  if Sender = Button1 then
   begin
     compara := Button1.Caption
   end
@@ -438,8 +441,9 @@ begin
   begin
     compara := Button10.Caption
   end
-  else
 
+  else
+ }
     // comienzo segunda rutina
     if compara = 'Curso 1' then
     begin
@@ -449,7 +453,7 @@ begin
 
   if compara = 'Curso 2' then
   begin
-    ShowMessage('curso2');
+
     SourceFile := curso2;
     DestFile := carpeta + nombre2;
   end
@@ -805,7 +809,7 @@ begin
       PChar(nil), SW_NORMAL)
   end
   else
-    ShowMessage('Error in this web http:// ' + SourceFile)
+    ShowMessage('You must have internet!! Error in this web -> ' + SourceFile)
 
 end;
 
