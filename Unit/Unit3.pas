@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, WinInet, Winsock,
-  URLMon, ShellApi, Vcl.Menus;
+  URLMon, ShellApi, Vcl.Menus ;
 // (getip las primeras 2 y download las siguientes)
 
 type
@@ -383,9 +383,10 @@ procedure TForm3.FormCreate(Sender: TObject);
 var
   hola: string;
 begin
-  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.2';
-  Form3.Caption := hola;
+  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.3';
+  Form3.Caption := hola; // copia el string en caption del form
   Requerimientos.Lines.Insert(0, hola);
+  // inserta en la linea 0 del requerimiento
 end;
 
 procedure TForm3.GoogleGroups1Click(Sender: TObject);
@@ -400,7 +401,7 @@ procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
 begin
   ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
   if HayInternet then
-    ShowMessage('verificando , si estás Conectado a internet')
+    ShowMessage('Estás Conectado a internet')
   else
     ShowMessage('Desconectado de internet');
 
@@ -410,12 +411,12 @@ procedure TForm3.Button1Click(Sender: TObject);
 var
   DestFile, SourceFile: string;
   compara: string;
-  I1: Integer;
   I2: Integer;
   prueba: string;
   Pressed: TCaption;
 
 const
+  // curso array guarda los array de los strings
   CursoArray: TArray<String> = [curso1, curso2, curso3, curso4, curso5, curso6,
     curso7, curso8, curso9, curso10, curso11, curso12, curso13, curso14,
     curso15, curso16, curso17, curso18, curso19, curso20, curso21, curso22,
@@ -456,7 +457,6 @@ begin
 
   }
   begin
-    I2 := 0;
     // rutina 1 guarda en compara el boton
     Pressed := (Sender as TButton).Caption;
     compara := Pressed;
@@ -466,9 +466,15 @@ begin
     I2 := strtoint(prueba) - 1;
     SourceFile := CursoArray[I2];
     DestFile := carpeta + NombreArray[I2];
+    // rutina 2.5 verificacion de la existencia de "carpeta" donde ira el curso
+    // testing: Jose Luis C.
 
+
+    if not DirectoryExists(ExtractFilePath(Application.ExeName) + carpeta) then
+    begin
+      CreateDir(ExtractFilePath(Application.ExeName) + carpeta);
+    end;
     // rutina 3 la descarga.
-
     if DownloadFile(SourceFile, DestFile) then
     begin
       ShowMessage('Download ok!');
