@@ -128,6 +128,7 @@ object Form3: TForm3
     Top = 10
     object N1: TMenuItem
       Caption = 'Menu'
+      OnClick = N1Click
       object Exit1: TMenuItem
         Caption = 'Exit'
         OnClick = Exit1Click
@@ -137,7 +138,6 @@ object Form3: TForm3
       Caption = 'Curso'
       object N1101: TMenuItem
         Caption = '1-10'
-        OnClick = N1101Click
       end
       object N11201: TMenuItem
         Caption = '11-20'
@@ -194,6 +194,14 @@ object Form3: TForm3
     object About1: TMenuItem
       Caption = 'About'
       OnClick = About1Click
+      object AboutTEUCLS1: TMenuItem
+        Caption = 'About TEU CLS'
+        OnClick = AboutTEUCLS1Click
+      end
+      object Source1: TMenuItem
+        Caption = 'Source'
+        OnClick = Source1Click
+      end
     end
   end
 end

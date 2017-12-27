@@ -41,6 +41,8 @@ type
     Prctica1: TMenuItem;
     EnIngls1: TMenuItem;
     GoogleGroups1: TMenuItem;
+    AboutTEUCLS1: TMenuItem;
+    Source1: TMenuItem;
     procedure WebCLS1Click(Sender: TObject);
     procedure elegram1Click(Sender: TObject);
     procedure About1Click(Sender: TObject);
@@ -57,6 +59,9 @@ type
     procedure EnIngls1Click(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
     procedure GoogleGroups1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure AboutTEUCLS1Click(Sender: TObject);
+    procedure Source1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -211,12 +216,6 @@ begin
   end;
 end;
 
-procedure TForm3.About1Click(Sender: TObject);
-
-begin
-  ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
-end;
-
 // visibles del 1 al 10
 procedure TForm3.N1101Click(Sender: TObject);
 begin
@@ -330,6 +329,13 @@ begin
     nil, nil, SW_SHOWNORMAL);
 end;
 
+procedure TForm3.Source1Click(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', 'https://github.com/apuromafo/TEUCLS', nil, nil,
+    SW_SHOWNORMAL);
+
+end;
+
 // visible del 51 al xx
 procedure TForm3.WebCLS1Click(Sender: TObject);
 begin
@@ -371,11 +377,18 @@ begin
 end;
 
 // Curso 1
+procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
+begin
+  ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
+
+end;
+
 procedure TForm3.Button1Click(Sender: TObject);
 var
   DestFile, SourceFile: string;
   compara: string;
-  var Pressed: TCaption;
+var
+  Pressed: TCaption;
 
 begin
   { consta en 3 rutinas ,
@@ -398,58 +411,18 @@ begin
     es la descarga con los datos anteriores (requiere internet)
 
   }
-Pressed:=(Sender as TButton).Caption  ;
-compara :=Pressed ;
- {
-  if Sender = Button1 then
-  begin
-    compara := Button1.Caption
-  end
-  else if Sender = Button2 then
-  begin
-    compara := Button2.Caption
-  end
-  else if Sender = Button3 then
-  begin
-    compara := Button3.Caption
-  end
-  else if Sender = Button4 then
-  begin
-    compara := Button4.Caption
-  end
-  else if Sender = Button5 then
-  begin
-    compara := Button5.Caption
-  end
-  else if Sender = Button6 then
-  begin
-    compara := Button6.Caption
-  end
-  else if Sender = Button7 then
-  begin
-    compara := Button7.Caption
-  end
-  else if Sender = Button8 then
-  begin
-    compara := Button8.Caption
-  end
-  else if Sender = Button9 then
-  begin
-    compara := Button9.Caption
-  end
-  else if Sender = Button10 then
-  begin
-    compara := Button10.Caption
-  end
+  Pressed := (Sender as TButton).Caption;
+  compara := Pressed;
 
-  else
- }
-    // comienzo segunda rutina
-    if compara = 'Curso 1' then
-    begin
-      SourceFile := curso1;
-      DestFile := carpeta + nombre1;
-    end;
+  SourceFile := string(compara);
+  DestFile := carpeta + string(compara);
+
+  // comienzo segunda rutina
+  if compara = 'Curso 1' then
+  begin
+    SourceFile := curso1;
+    DestFile := carpeta + nombre1;
+  end;
 
   if compara = 'Curso 2' then
   begin
