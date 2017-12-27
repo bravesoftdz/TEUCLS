@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  WinInet, Winsock, URLMon, ShellApi, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, WinInet, Winsock,
+  URLMon, ShellApi, Vcl.Menus;
 // (getip las primeras 2 y download las siguientes)
 
 type
@@ -45,7 +45,7 @@ type
     Source1: TMenuItem;
     procedure WebCLS1Click(Sender: TObject);
     procedure elegram1Click(Sender: TObject);
-    procedure About1Click(Sender: TObject);
+    // procedure About1Click(Sender: TObject);
     procedure N1101Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure N11201Click(Sender: TObject);
@@ -59,9 +59,10 @@ type
     procedure EnIngls1Click(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
     procedure GoogleGroups1Click(Sender: TObject);
-    procedure N1Click(Sender: TObject);
+    // procedure N1Click(Sender: TObject);
     procedure AboutTEUCLS1Click(Sender: TObject);
     procedure Source1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -205,6 +206,15 @@ resourcestring
 implementation
 
 {$R *.dfm}
+
+function HayInternet: Boolean;
+var
+  Estado: Cardinal;
+begin
+  Estado := INTERNET_CONNECTION_MODEM or INTERNET_CONNECTION_LAN or
+    INTERNET_CONNECTION_PROXY;
+  Result := InternetGetConnectedState(@Estado, 0);
+end;
 
 function DownloadFile(SourceFile, DestFile: string): Boolean;
 begin
@@ -369,6 +379,15 @@ begin
   halt;
 end;
 
+procedure TForm3.FormCreate(Sender: TObject);
+var
+  hola: string;
+begin
+  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.2';
+  Form3.Caption := hola;
+  Requerimientos.Lines.Insert(0, hola);
+end;
+
 procedure TForm3.GoogleGroups1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://groups.google.com/group/CrackSLatinoS',
@@ -380,6 +399,10 @@ end;
 procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
 begin
   ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
+  if HayInternet then
+    ShowMessage('verificando , si estás Conectado a internet')
+  else
+    ShowMessage('Desconectado de internet');
 
 end;
 
@@ -387,8 +410,29 @@ procedure TForm3.Button1Click(Sender: TObject);
 var
   DestFile, SourceFile: string;
   compara: string;
-var
+  I1: Integer;
+  I2: Integer;
+  prueba: string;
   Pressed: TCaption;
+
+const
+  CursoArray: TArray<String> = [curso1, curso2, curso3, curso4, curso5, curso6,
+    curso7, curso8, curso9, curso10, curso11, curso12, curso13, curso14,
+    curso15, curso16, curso17, curso18, curso19, curso20, curso21, curso22,
+    curso23, curso24, curso25, curso26, curso27, curso28, curso29, curso30,
+    curso31, curso32, curso33, curso34, curso35, curso36, curso37, curso38,
+    curso39, curso40, curso41, curso42, curso43, curso44, curso45, curso46,
+    curso47, curso48, curso49, curso50, curso51, curso52, curso53, curso54,
+    curso55, curso56, curso57, curso58, curso59, curso60, curso61];
+  NombreArray: TArray<String> = [nombre1, nombre2, nombre3, nombre4, nombre5,
+    nombre6, nombre7, nombre8, nombre9, nombre10, nombre11, nombre12, nombre13,
+    nombre14, nombre15, nombre16, nombre17, nombre18, nombre19, nombre20,
+    nombre21, nombre22, nombre23, nombre24, nombre25, nombre26, nombre27,
+    nombre28, nombre29, nombre30, nombre31, nombre32, nombre33, nombre34,
+    nombre35, nombre36, nombre37, nombre38, nombre39, nombre40, nombre41,
+    nombre42, nombre43, nombre44, nombre45, nombre46, nombre47, nombre48,
+    nombre49, nombre50, nombre51, nombre52, nombre53, nombre54, nombre55,
+    nombre56, nombre57, nombre58, nombre59, nombre60, nombre61];
 
 begin
   { consta en 3 rutinas ,
@@ -411,378 +455,31 @@ begin
     es la descarga con los datos anteriores (requiere internet)
 
   }
-  Pressed := (Sender as TButton).Caption;
-  compara := Pressed;
-
-  SourceFile := string(compara);
-  DestFile := carpeta + string(compara);
-
-  // comienzo segunda rutina
-  if compara = 'Curso 1' then
   begin
-    SourceFile := curso1;
-    DestFile := carpeta + nombre1;
+    I2 := 0;
+    // rutina 1 guarda en compara el boton
+    Pressed := (Sender as TButton).Caption;
+    compara := Pressed;
+    // rutina 2 copia de compara el numero y le asigna el valor de source y destino
+    // segun el array de curso y nombre
+    prueba := Copy(compara, 6, length(compara));
+    I2 := strtoint(prueba) - 1;
+    SourceFile := CursoArray[I2];
+    DestFile := carpeta + NombreArray[I2];
+
+    // rutina 3 la descarga.
+
+    if DownloadFile(SourceFile, DestFile) then
+    begin
+      ShowMessage('Download ok!');
+      ShellExecute(Application.Handle, PChar('open'),
+        PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
+        PChar(nil), SW_NORMAL)
+    end
+    else
+      ShowMessage('Error in this web http:// ' + SourceFile)
+
   end;
-
-  if compara = 'Curso 2' then
-  begin
-
-    SourceFile := curso2;
-    DestFile := carpeta + nombre2;
-  end
-  else if compara = 'Curso 3' then
-  begin
-    SourceFile := curso3;
-    DestFile := carpeta + nombre3;
-  end
-  else if compara = 'Curso 4' then
-  begin
-    SourceFile := curso4;
-    DestFile := carpeta + nombre4;
-  end
-  else if compara = 'Curso 5' then
-  begin
-    SourceFile := curso5;
-    DestFile := carpeta + nombre5;
-  end
-  else if compara = 'Curso 6' then
-  begin
-    SourceFile := curso6;
-    DestFile := carpeta + nombre6;
-  end
-  else if compara = 'Curso 7' then
-  begin
-    SourceFile := curso7;
-    DestFile := carpeta + nombre7;
-  end
-  else if compara = 'Curso 8' then
-  begin
-    SourceFile := curso8;
-    DestFile := carpeta + nombre8;
-  end
-
-  else if compara = 'Curso 9' then
-  begin
-    SourceFile := curso9;
-    DestFile := carpeta + nombre9;
-  end
-
-  else if compara = 'Curso 10' then
-  begin
-    SourceFile := curso10;
-    DestFile := carpeta + nombre10;
-  end
-
-  else if compara = 'Curso 11' then
-  begin
-    SourceFile := curso11;
-    DestFile := carpeta + nombre11;
-  end
-
-  else if compara = 'Curso 12' then
-  begin
-    SourceFile := curso12;
-    DestFile := carpeta + nombre12;
-  end
-
-  else if compara = 'Curso 13' then
-  begin
-    SourceFile := curso13;
-    DestFile := carpeta + nombre13;
-  end
-
-  else if compara = 'Curso 14' then
-  begin
-    SourceFile := curso14;
-    DestFile := carpeta + nombre14;
-  end
-
-  else if compara = 'Curso 15' then
-  begin
-    SourceFile := curso15;
-    DestFile := carpeta + nombre15;
-  end
-  else if compara = 'Curso 16' then
-  begin
-    SourceFile := curso16;
-    DestFile := carpeta + nombre16;
-  end
-  else if compara = 'Curso 17' then
-  begin
-    SourceFile := curso17;
-    DestFile := carpeta + nombre17;
-  end
-
-  else if compara = 'Curso 18' then
-  begin
-    SourceFile := curso18;
-    DestFile := carpeta + nombre18;
-  end
-
-  else if compara = 'Curso 19' then
-  begin
-    SourceFile := curso19;
-    DestFile := carpeta + nombre19;
-  end
-
-  else if compara = 'Curso 20' then
-  begin
-    SourceFile := curso20;
-    DestFile := carpeta + nombre20;
-  end
-
-  else if compara = 'Curso 21' then
-  begin
-    SourceFile := curso21;
-    DestFile := carpeta + nombre21;
-  end
-
-  else if compara = 'Curso 22' then
-  begin
-    SourceFile := curso22;
-    DestFile := carpeta + nombre22;
-  end
-
-  else if compara = 'Curso 23' then
-  begin
-    SourceFile := curso23;
-    DestFile := carpeta + nombre23;
-  end
-
-  else if compara = 'Curso 24' then
-  begin
-    SourceFile := curso24;
-    DestFile := carpeta + nombre24;
-  end
-
-  else if compara = 'Curso 25' then
-  begin
-    SourceFile := curso25;
-    DestFile := carpeta + nombre25;
-  end
-
-  else if compara = 'Curso 26' then
-  begin
-    SourceFile := curso26;
-    DestFile := carpeta + nombre26;
-  end
-
-  else if compara = 'Curso 27' then
-  begin
-    SourceFile := curso27;
-    DestFile := carpeta + nombre27;
-  end
-
-  else if compara = 'Curso 28' then
-  begin
-    SourceFile := curso28;
-    DestFile := carpeta + nombre28;
-  end
-
-  else if compara = 'Curso 29' then
-  begin
-    SourceFile := curso29;
-    DestFile := carpeta + nombre29;
-  end
-
-  else if compara = 'Curso 30' then
-  begin
-    SourceFile := curso30;
-    DestFile := carpeta + nombre30;
-  end
-
-  else if compara = 'Curso 31' then
-  begin
-    SourceFile := curso31;
-    DestFile := carpeta + nombre31;
-  end
-
-  else if compara = 'Curso 32' then
-  begin
-    SourceFile := curso32;
-    DestFile := carpeta + nombre32;
-  end
-
-  else if compara = 'Curso 33' then
-  begin
-    SourceFile := curso33;
-    DestFile := carpeta + nombre33;
-  end
-
-  else if compara = 'Curso 34' then
-  begin
-    SourceFile := curso34;
-    DestFile := carpeta + nombre34;
-  end
-
-  else if compara = 'Curso 35' then
-  begin
-    SourceFile := curso35;
-    DestFile := carpeta + nombre35;
-  end
-
-  else if compara = 'Curso 36' then
-  begin
-    SourceFile := curso36;
-    DestFile := carpeta + nombre36;
-  end
-
-  else if compara = 'Curso 37' then
-  begin
-    SourceFile := curso37;
-    DestFile := carpeta + nombre37;
-  end
-
-  else if compara = 'Curso 38' then
-  begin
-    SourceFile := curso38;
-    DestFile := carpeta + nombre38;
-  end
-
-  else if compara = 'Curso 39' then
-  begin
-    SourceFile := curso39;
-    DestFile := carpeta + nombre39;
-  end
-
-  else if compara = 'Curso 40' then
-  begin
-    SourceFile := curso40;
-    DestFile := carpeta + nombre40;
-  end
-
-  else if compara = 'Curso 41' then
-  begin
-    SourceFile := curso41;
-    DestFile := carpeta + nombre41;
-  end
-
-  else if compara = 'Curso 42' then
-  begin
-    SourceFile := curso42;
-    DestFile := carpeta + nombre42;
-  end
-
-  else if compara = 'Curso 43' then
-  begin
-    SourceFile := curso43;
-    DestFile := carpeta + nombre43;
-  end
-
-  else if compara = 'Curso 44' then
-  begin
-    SourceFile := curso44;
-    DestFile := carpeta + nombre44;
-  end
-
-  else if compara = 'Curso 45' then
-  begin
-    SourceFile := curso45;
-    DestFile := carpeta + nombre45;
-  end
-
-  else if compara = 'Curso 46' then
-  begin
-    SourceFile := curso46;
-    DestFile := carpeta + nombre46;
-  end
-
-  else if compara = 'Curso 47' then
-  begin
-    SourceFile := curso47;
-    DestFile := carpeta + nombre47;
-  end
-
-  else if compara = 'Curso 48' then
-  begin
-    SourceFile := curso48;
-    DestFile := carpeta + nombre48;
-  end
-
-  else if compara = 'Curso 49' then
-  begin
-    SourceFile := curso49;
-    DestFile := carpeta + nombre49;
-  end
-
-  else if compara = 'Curso 50' then
-  begin
-    SourceFile := curso50;
-    DestFile := carpeta + nombre50;
-  end
-
-  else if compara = 'Curso 51' then
-  begin
-    SourceFile := curso51;
-    DestFile := carpeta + nombre51;
-  end
-
-  else if compara = 'Curso 52' then
-  begin
-    SourceFile := curso52;
-    DestFile := carpeta + nombre52;
-  end
-
-  else if compara = 'Curso 53' then
-  begin
-    SourceFile := curso53;
-    DestFile := carpeta + nombre53;
-  end
-
-  else if compara = 'Curso 54' then
-  begin
-    SourceFile := curso54;
-    DestFile := carpeta + nombre54;
-  end
-
-  else if compara = 'Curso 55' then
-  begin
-    SourceFile := curso55;
-    DestFile := carpeta + nombre55;
-  end
-
-  else if compara = 'Curso 56' then
-  begin
-    SourceFile := curso56;
-    DestFile := carpeta + nombre56;
-  end
-  else if compara = 'Curso 57' then
-  begin
-    SourceFile := curso57;
-    DestFile := carpeta + nombre57;
-  end
-  else if compara = 'Curso 58' then
-  begin
-    SourceFile := curso58;
-    DestFile := carpeta + nombre58;
-  end
-  else if compara = 'Curso 59' then
-  begin
-    SourceFile := curso59;
-    DestFile := carpeta + nombre59;
-  end
-  else if compara = 'Curso 60' then
-  begin
-    SourceFile := curso60;
-    DestFile := carpeta + nombre60;
-  end
-  else if compara = 'Curso 61' then
-  begin
-    SourceFile := curso61;
-    DestFile := carpeta + nombre61;
-  end;
-  // rutina 3 la descarga.
-
-  if DownloadFile(SourceFile, DestFile) then
-  begin
-
-    ShowMessage('Download ok!');
-    ShellExecute(Application.Handle, PChar('open'),
-      PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
-      PChar(nil), SW_NORMAL)
-  end
-  else
-    ShowMessage('You must have internet!! Error in this web -> ' + SourceFile)
 
 end;
 

@@ -2,7 +2,6 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'TEU Ricardo Narvaja Curso IDA desde Cero 25-12-17'
   ClientHeight = 178
   ClientWidth = 525
   Color = clBtnFace
@@ -13,6 +12,7 @@ object Form3: TForm3
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Requerimientos: TMemo
@@ -28,8 +28,7 @@ object Form3: TForm3
       'Navegador configurado (internet 7 y superior)'
       'Espacio Suficiente (al minuto son  400mb)'
       ''
-      'Autor: Ricardo Narvaja'
-      'Fecha:25-12-17')
+      'Autor: Ricardo Narvaja')
     ReadOnly = True
     TabOrder = 0
   end
@@ -128,7 +127,6 @@ object Form3: TForm3
     Top = 10
     object N1: TMenuItem
       Caption = 'Menu'
-      OnClick = N1Click
       object Exit1: TMenuItem
         Caption = 'Exit'
         OnClick = Exit1Click
@@ -138,6 +136,7 @@ object Form3: TForm3
       Caption = 'Curso'
       object N1101: TMenuItem
         Caption = '1-10'
+        OnClick = N1101Click
       end
       object N11201: TMenuItem
         Caption = '11-20'
@@ -193,7 +192,6 @@ object Form3: TForm3
     end
     object About1: TMenuItem
       Caption = 'About'
-      OnClick = About1Click
       object AboutTEUCLS1: TMenuItem
         Caption = 'About TEU CLS'
         OnClick = AboutTEUCLS1Click
