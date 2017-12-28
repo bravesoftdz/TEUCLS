@@ -175,10 +175,10 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\Downloads\Telegram_2017-12-25_18-20-38 (1).ico" Configuration="Release" Class="UWP_DelphiLogo44">
+                <DeployFile LocalName="Resources\chrome_2017-12-27_17-27-38.png" Configuration="Release" Class="UWP_DelphiLogo150">
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
-                        <RemoteName>Logo44x44.png</RemoteName>
+                        <RemoteName>Logo150x150.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -189,10 +189,10 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Resources\chrome_2017-12-27_17-27-38.png" Configuration="Release" Class="UWP_DelphiLogo150">
+                <DeployFile LocalName="..\..\Downloads\Telegram_2017-12-25_18-20-38 (1).ico" Configuration="Release" Class="UWP_DelphiLogo44">
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
-                        <RemoteName>Logo150x150.png</RemoteName>
+                        <RemoteName>Logo44x44.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

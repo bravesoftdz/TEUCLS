@@ -42,6 +42,11 @@ type
     GoogleGroups1: TMenuItem;
     AboutTEUCLS1: TMenuItem;
     Source1: TMenuItem;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Button11: TButton;
     procedure WebCLS1Click(Sender: TObject);
     procedure elegram1Click(Sender: TObject);
     // procedure About1Click(Sender: TObject);
@@ -62,6 +67,7 @@ type
     procedure AboutTEUCLS1Click(Sender: TObject);
     procedure Source1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -339,7 +345,7 @@ var
   DestFile, SourceFile: string;
 
 begin
-  SourceFile := curso60;
+  SourceFile := web+curso60;
   DestFile := carpeta + nombre60;
 
   if DownloadFile(SourceFile, DestFile) then
@@ -359,7 +365,7 @@ procedure TForm3.Source1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'https://github.com/apuromafo/TEUCLS', nil, nil,
     SW_SHOWNORMAL);
-
+  Label2.Caption := 'Abriendo sitio web...';
 end;
 
 // visible del 51 al xx
@@ -367,17 +373,20 @@ procedure TForm3.WebCLS1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://www.ricardonarvaja.info', nil, nil,
     SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo sitio web...';
 end;
 
 procedure TForm3.elegram1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://t.me/crackslatinos', nil, nil,
     SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo sitio web...';
 end;
 
 procedure TForm3.EnIngls1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', PChar(web2), nil, nil, SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo sitio web...';
 end;
 
 procedure TForm3.Examenes1Click(Sender: TObject);
@@ -412,7 +421,7 @@ procedure TForm3.FormCreate(Sender: TObject);
 var
   hola: string;
 begin
-  hola := 'TEU Ricardo Narvaja Curso Ollydbg desde Cero 27-12-17 v1.3';
+  hola := 'TEU Ricardo Narvaja Curso Ollydbg desde Cero 27-12-17 v1.4';
   Form3.Caption := hola; // copia el string en caption del form
   Requerimientos.Lines.Insert(0, hola);
   // inserta en la linea 0 del requerimiento
@@ -422,7 +431,7 @@ procedure TForm3.GoogleGroups1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://groups.google.com/group/CrackSLatinoS',
     nil, nil, SW_SHOWNORMAL);
-
+  Label2.Caption := 'Abriendo sitio web...';
 end;
 
 // Curso 1
@@ -430,9 +439,29 @@ procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
 begin
   ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
   if HayInternet then
-    ShowMessage('Estás Conectado a internet')
+  begin
+    ShowMessage('Estás Conectado a internet');
+    Label2.Caption := 'Estás Conectado a internet';
+  end
   else
     ShowMessage('Desconectado de internet');
+  Label2.Caption := 'Desconectado de internet';
+
+end;
+
+procedure TForm3.Button11Click(Sender: TObject);
+
+begin
+  if not DirectoryExists(ExtractFilePath(Application.ExeName) + carpeta) then
+  begin
+    CreateDir(ExtractFilePath(Application.ExeName) + carpeta);
+    Label2.Caption := 'creada Carpeta Curso';
+  end;
+
+  Label2.Caption := 'Abriendo la carpeta contenedora...';
+  ShellExecute(Application.Handle, PChar('open'),
+    PChar(ExtractFilePath(Application.ExeName) + carpeta), PChar(''),
+    PChar(nil), SW_NORMAL);
 
 end;
 
@@ -493,6 +522,7 @@ begin
     // rutina 2 copia de compara el numero y le asigna el valor de source y destino
     // segun el array de curso y nombre
     prueba := Copy(compara, 6, length(compara));
+    Label2.Caption := 'Bajando el curso' + prueba;
     I2 := strtoint(prueba) - 1;
     SourceFile := web + CursoArray[I2];
     DestFile := carpeta + NombreArray[I2];
@@ -506,10 +536,19 @@ begin
     // rutina 3 la descarga.
     if DownloadFile(SourceFile, DestFile) then
     begin
-      ShowMessage('Download ok!');
-      ShellExecute(Application.Handle, PChar('open'),
-        PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
-        PChar(nil), SW_NORMAL)
+      If CheckBox1.Checked then
+      begin
+        ShowMessage('Download ok!');
+      end;
+      Label2.Caption := 'descargado!';
+
+      If CheckBox2.Checked then
+      begin
+        Label2.Caption := 'Abriendo archivo...';
+        ShellExecute(Application.Handle, PChar('open'),
+          PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
+          PChar(nil), SW_NORMAL)
+      end;
     end
     else
       ShowMessage('Error in this web http:// ' + SourceFile)

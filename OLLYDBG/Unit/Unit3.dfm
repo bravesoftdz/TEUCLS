@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  ClientHeight = 178
+  ClientHeight = 256
   ClientWidth = 593
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,6 +15,20 @@ object Form3: TForm3
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 24
+    Top = 176
+    Width = 185
+    Height = 13
+    Caption = 'Al pulsar los botones descargar y :'
+  end
+  object Label2: TLabel
+    Left = 27
+    Top = 240
+    Width = 517
+    Height = 13
+    Caption = ' '
+  end
   object Requerimientos: TMemo
     Left = 216
     Top = 18
@@ -123,6 +137,31 @@ object Form3: TForm3
     Caption = 'Curso 10'
     TabOrder = 10
     OnClick = Button1Click
+  end
+  object CheckBox1: TCheckBox
+    Left = 32
+    Top = 192
+    Width = 201
+    Height = 17
+    Caption = 'Mostrar Mensaje de descarga'
+    TabOrder = 11
+  end
+  object CheckBox2: TCheckBox
+    Left = 32
+    Top = 215
+    Width = 209
+    Height = 17
+    Caption = 'Abrir archivo de curso'
+    TabOrder = 12
+  end
+  object Button11: TButton
+    Left = 280
+    Top = 180
+    Width = 145
+    Height = 41
+    Caption = 'Abrir Carpeta Contenedora'
+    TabOrder = 13
+    OnClick = Button11Click
   end
   object MainMenu1: TMainMenu
     Left = 65480
