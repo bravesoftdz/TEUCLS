@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, WinInet, Winsock,
-  URLMon, ShellApi, Vcl.Menus ;
+  URLMon, ShellApi, Vcl.Menus, Vcl.ComCtrls;
 // (getip las primeras 2 y download las siguientes)
 
 type
@@ -43,6 +43,11 @@ type
     GoogleGroups1: TMenuItem;
     AboutTEUCLS1: TMenuItem;
     Source1: TMenuItem;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    Button11: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
     procedure WebCLS1Click(Sender: TObject);
     procedure elegram1Click(Sender: TObject);
     // procedure About1Click(Sender: TObject);
@@ -63,6 +68,7 @@ type
     procedure AboutTEUCLS1Click(Sender: TObject);
     procedure Source1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Button11Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -196,7 +202,7 @@ resourcestring
   nombre53 = 'IDA053.7z';
   nombre54 = 'IDA054 pass a.7z';
   nombre55 = 'IDA055 pass a.7z';
-  nombre56 = 'IDA056.pass a7z';
+  nombre56 = 'IDA056 pass a.7z';
   nombre57 = 'IDA057 pass a.7z';
   nombre58 = 'IDA058 pass a.7z';
   nombre59 = 'IDA059 pass a.7z';
@@ -337,12 +343,14 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/',
     nil, nil, SW_SHOWNORMAL);
+     Label2.Caption := 'Abriendo web...';
 end;
 
 procedure TForm3.Source1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'https://github.com/apuromafo/TEUCLS', nil, nil,
     SW_SHOWNORMAL);
+     Label2.Caption := 'Abriendo web...';
 
 end;
 
@@ -351,12 +359,14 @@ procedure TForm3.WebCLS1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://www.ricardonarvaja.info', nil, nil,
     SW_SHOWNORMAL);
+     Label2.Caption := 'Abriendo web...';
 end;
 
 procedure TForm3.elegram1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://t.me/crackslatinos', nil, nil,
     SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo web...';
 end;
 
 procedure TForm3.EnIngls1Click(Sender: TObject);
@@ -364,6 +374,7 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EN%20INGLES/',
     nil, nil, SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo web...';
 end;
 
 procedure TForm3.Examenes1Click(Sender: TObject);
@@ -371,10 +382,12 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EXAMENES/',
     nil, nil, SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo web...';
 end;
 
 procedure TForm3.Exit1Click(Sender: TObject);
 begin
+  Label2.Caption := 'Cerrando';
   self.Close;
   halt;
 end;
@@ -383,7 +396,7 @@ procedure TForm3.FormCreate(Sender: TObject);
 var
   hola: string;
 begin
-  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.3';
+  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.4';
   Form3.Caption := hola; // copia el string en caption del form
   Requerimientos.Lines.Insert(0, hola);
   // inserta en la linea 0 del requerimiento
@@ -393,6 +406,7 @@ procedure TForm3.GoogleGroups1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://groups.google.com/group/CrackSLatinoS',
     nil, nil, SW_SHOWNORMAL);
+  Label2.Caption := 'Abriendo web...';
 
 end;
 
@@ -401,9 +415,30 @@ procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
 begin
   ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
   if HayInternet then
-    ShowMessage('Estás Conectado a internet')
+  begin
+    ShowMessage('Estás Conectado a internet');
+    Label2.Caption := 'Estás Conectado a internet';
+  end
   else
+  begin
     ShowMessage('Desconectado de internet');
+    Label2.Caption := 'Estás Desconectado a internet';
+  end;
+
+end;
+
+procedure TForm3.Button11Click(Sender: TObject);
+begin
+  if not DirectoryExists(ExtractFilePath(Application.ExeName) + carpeta) then
+  begin
+    CreateDir(ExtractFilePath(Application.ExeName) + carpeta);
+    Label2.Caption := 'creada Carpeta Curso';
+  end;
+
+  Label2.Caption := 'Abriendo la carpeta contenedora...';
+  ShellExecute(Application.Handle, PChar('open'),
+    PChar(ExtractFilePath(Application.ExeName) + carpeta), PChar(''),
+    PChar(nil), SW_NORMAL);
 
 end;
 
@@ -436,6 +471,7 @@ const
     nombre56, nombre57, nombre58, nombre59, nombre60, nombre61];
 
 begin
+
   { consta en 3 rutinas ,
     dado que cada boton llega a evento button1 click, entonces este se encarga de
     comparar  en 3 rutinas
@@ -457,18 +493,21 @@ begin
 
   }
   begin
+    Label2.Caption := '';
     // rutina 1 guarda en compara el boton
     Pressed := (Sender as TButton).Caption;
     compara := Pressed;
+
     // rutina 2 copia de compara el numero y le asigna el valor de source y destino
     // segun el array de curso y nombre
     prueba := Copy(compara, 6, length(compara));
+    // StatusBar1.Panels.Add;
+    Label2.Caption := 'Bajando el curso' + prueba;
     I2 := strtoint(prueba) - 1;
     SourceFile := CursoArray[I2];
     DestFile := carpeta + NombreArray[I2];
     // rutina 2.5 verificacion de la existencia de "carpeta" donde ira el curso
     // testing: Jose Luis C.
-
 
     if not DirectoryExists(ExtractFilePath(Application.ExeName) + carpeta) then
     begin
@@ -477,10 +516,19 @@ begin
     // rutina 3 la descarga.
     if DownloadFile(SourceFile, DestFile) then
     begin
-      ShowMessage('Download ok!');
-      ShellExecute(Application.Handle, PChar('open'),
-        PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
-        PChar(nil), SW_NORMAL)
+      If CheckBox1.Checked then
+      begin
+        ShowMessage('Download ok!');
+      end;
+      Label2.Caption := 'descargado!';
+
+      If CheckBox2.Checked then
+      begin
+        Label2.Caption := 'Abriendo archivo...';
+        ShellExecute(Application.Handle, PChar('open'),
+          PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
+          PChar(nil), SW_NORMAL)
+      end;
     end
     else
       ShowMessage('Error in this web http:// ' + SourceFile)

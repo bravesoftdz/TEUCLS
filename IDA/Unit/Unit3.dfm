@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  ClientHeight = 178
+  ClientHeight = 253
   ClientWidth = 525
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,8 +13,27 @@ object Form3: TForm3
   Menu = MainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
+  DesignSize = (
+    525
+    253)
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 48
+    Top = 171
+    Width = 166
+    Height = 13
+    Caption = 'Al pulsar los botones descargar y :'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 222
+    Width = 505
+    Height = 19
+    Anchors = [akLeft, akTop, akRight]
+    Color = clBtnFace
+    ParentColor = False
+  end
   object Requerimientos: TMemo
     Left = 216
     Top = 18
@@ -26,7 +45,7 @@ object Form3: TForm3
       '7zip para descomprimir los archivos'
       'Procesador de texto (word o similar que habra docx)'
       'Navegador configurado (internet 7 y superior)'
-      'Espacio Suficiente (al minuto son  400mb)'
+      'Espacio Suficiente (al minuto son  algunos mb)'
       ''
       'Autor: Ricardo Narvaja')
     ReadOnly = True
@@ -121,6 +140,35 @@ object Form3: TForm3
     Caption = 'Curso 10'
     TabOrder = 10
     OnClick = Button1Click
+  end
+  object CheckBox1: TCheckBox
+    Left = 8
+    Top = 184
+    Width = 217
+    Height = 17
+    Caption = 'Mostrar Mensaje de descarga'
+    Checked = True
+    State = cbChecked
+    TabOrder = 11
+  end
+  object CheckBox2: TCheckBox
+    Left = 8
+    Top = 199
+    Width = 177
+    Height = 17
+    Caption = 'Abrir archivo de curso'
+    Checked = True
+    State = cbChecked
+    TabOrder = 12
+  end
+  object Button11: TButton
+    Left = 231
+    Top = 180
+    Width = 146
+    Height = 36
+    Caption = 'Abrir Carpeta Contenedora'
+    TabOrder = 13
+    OnClick = Button11Click
   end
   object MainMenu1: TMainMenu
     Left = 65480

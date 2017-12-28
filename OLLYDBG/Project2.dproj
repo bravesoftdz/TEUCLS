@@ -103,9 +103,9 @@
         <VerInfo_Keys>CompanyName=CLS TEAM;FileVersion=1.0.0.0;InternalName=TEU IDA Pro Ricardo Narvaja By Apuromafo v1.0;LegalCopyright=Apuromafo CLS;LegalTrademarks=RicardoNarvaja;OriginalFilename=TEU.EXE;ProductVersion=1.0.0.0;Comments=Idea desde Softdat  creado by Apuromafo;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppEnableHighDPI>true</AppEnableHighDPI>
-        <UWP_DelphiLogo44>C:\Users\PC\Downloads\Telegram_2017-12-25_18-20-38 (1).ico</UWP_DelphiLogo44>
+        <UWP_DelphiLogo44>C:\Users\PC\Documents\GitHub\TEUCLS\OLLYDBG\Resources\Project2_Icon2.ico</UWP_DelphiLogo44>
         <BT_BuildType>Debug</BT_BuildType>
-        <UWP_DelphiLogo150>C:\Users\PC\Desktop\Proyecto Teu\Resources\Telegram_2017-12-25_18-20-38.png</UWP_DelphiLogo150>
+        <UWP_DelphiLogo150>C:\Users\PC\Documents\GitHub\TEUCLS\OLLYDBG\Resources\chrome_2017-12-27_17-27-38.png</UWP_DelphiLogo150>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -179,6 +179,20 @@
                     <Platform Name="Win32">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Resources\Project2_Icon2.ico" Configuration="Release" Class="UWP_DelphiLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Resources\chrome_2017-12-27_17-27-38.png" Configuration="Release" Class="UWP_DelphiLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

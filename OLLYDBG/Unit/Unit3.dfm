@@ -3,7 +3,7 @@ object Form3: TForm3
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   ClientHeight = 178
-  ClientWidth = 525
+  ClientWidth = 593
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,16 +18,18 @@ object Form3: TForm3
   object Requerimientos: TMemo
     Left = 216
     Top = 18
-    Width = 297
+    Width = 345
     Height = 147
     Lines.Strings = (
       'Requerimientos:'
-      'Ollydbg y windows xp'
-      '7zip para descomprimir los archivos'
+      'Ollydbg y windows xp (aunque sea en vm)'
+      '7zip/winrar para descomprimir los archivos'
       'Procesador de texto (word o similar que habra docx)'
       'Navegador configurado (internet 7 y superior)'
       'Espacio Suficiente (al minuto son  varios mb)'
-      ''
+      'Info: ->Los archivos con contrase'#241'a "a", porque los packers  son'
+      'detectados  como malware asi que  para practicar reversing  '
+      ' no abrir sin conocimiento'
       'Autor: Ricardo Narvaja')
     ReadOnly = True
     TabOrder = 0
@@ -155,23 +157,19 @@ object Form3: TForm3
         OnClick = N41501Click
       end
       object N51xx1: TMenuItem
-        Caption = '51-60'
+        Caption = '51-58'
         OnClick = N51xx1Click
       end
-      object N61xx1: TMenuItem
-        Caption = '61-xx'
-        OnClick = N61xx1Click
-      end
       object Examenes1: TMenuItem
-        Caption = 'Ex'#225'menes'
+        Caption = #205'ndice'
         OnClick = Examenes1Click
       end
       object Prctica1: TMenuItem
-        Caption = 'Ejercicios'
+        Caption = 'Anexos 55-70'
         OnClick = Prctica1Click
       end
       object EnIngls1: TMenuItem
-        Caption = 'En Ingl'#233's'
+        Caption = 'Otros (Ingl'#233's-Portugu'#233's)'
         OnClick = EnIngls1Click
       end
     end
