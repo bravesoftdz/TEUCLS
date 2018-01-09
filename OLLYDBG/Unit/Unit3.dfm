@@ -18,14 +18,14 @@ object Form3: TForm3
   object Label1: TLabel
     Left = 24
     Top = 176
-    Width = 185
+    Width = 166
     Height = 13
     Caption = 'Al pulsar los botones descargar y :'
   end
   object Label2: TLabel
     Left = 27
     Top = 240
-    Width = 517
+    Width = 3
     Height = 13
     Caption = ' '
   end
@@ -144,6 +144,8 @@ object Form3: TForm3
     Width = 201
     Height = 17
     Caption = 'Mostrar Mensaje de descarga'
+    Checked = True
+    State = cbChecked
     TabOrder = 11
   end
   object CheckBox2: TCheckBox
@@ -152,6 +154,8 @@ object Form3: TForm3
     Width = 209
     Height = 17
     Caption = 'Abrir archivo de curso'
+    Checked = True
+    State = cbChecked
     TabOrder = 12
   end
   object Button11: TButton

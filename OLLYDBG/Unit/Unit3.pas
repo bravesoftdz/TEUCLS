@@ -345,7 +345,7 @@ var
   DestFile, SourceFile: string;
 
 begin
-  SourceFile := web+curso60;
+  SourceFile := web + curso60;
   DestFile := carpeta + nombre60;
 
   if DownloadFile(SourceFile, DestFile) then
@@ -444,9 +444,10 @@ begin
     Label2.Caption := 'Estás Conectado a internet';
   end
   else
+  begin
     ShowMessage('Desconectado de internet');
-  Label2.Caption := 'Desconectado de internet';
-
+    Label2.Caption := 'Desconectado de internet';
+  end;
 end;
 
 procedure TForm3.Button11Click(Sender: TObject);
