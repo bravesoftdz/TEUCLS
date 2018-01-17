@@ -208,6 +208,20 @@ resourcestring
   nombre59 = 'IDA059 pass a.7z';
   nombre60 = 'IDA060.7z';
   nombre61 = 'IDA061 pass a.7z';
+  str1 = 'Abriendo web...';
+  str2 = 'Cerrando';
+  str3 = 'TEU Ricardo Narvaja Curso IDA desde Cero 11-01-2018 v1.5';
+  str4 = 'Estás Conectado a internet';
+  str5 = 'Estás Desconectado a internet';
+  str6 = 'creada Carpeta Curso';
+  str7 = 'Abriendo archivo...';
+  str8 = 'Error in this web http:// ';
+  str9 = 'Abriendo la carpeta contenedora...';
+  str10 = 'Creado con Fines Educativos , saludos Apuromafo';
+  str11 = 'Download ok!';
+  str12 = 'Bajando el curso';
+  str13 = 'descargado!';
+  str14 = 'Curso 61';
 
 implementation
 
@@ -326,15 +340,15 @@ end;
 procedure TForm3.N61xx1Click(Sender: TObject);
 begin
   Button1.Caption := 'Curso 61';
-  Button2.Caption := 'Curso 61';
-  Button3.Caption := 'Curso 61';
-  Button4.Caption := 'Curso 61';
-  Button5.Caption := 'Curso 61';
-  Button6.Caption := 'Curso 61';
-  Button7.Caption := 'Curso 61';
-  Button8.Caption := 'Curso 61';
-  Button9.Caption := 'Curso 61';
-  Button10.Caption := 'Curso 61';
+  Button2.Caption := str14;
+  Button3.Caption := str14;
+  Button4.Caption := str14;
+  Button5.Caption := str14;
+  Button6.Caption := str14;
+  Button7.Caption := str14;
+  Button8.Caption := str14;
+  Button9.Caption := str14;
+  Button10.Caption := str14;
 
 end;
 
@@ -343,14 +357,14 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EJERCICIOS/',
     nil, nil, SW_SHOWNORMAL);
-     Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 end;
 
 procedure TForm3.Source1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'https://github.com/apuromafo/TEUCLS', nil, nil,
     SW_SHOWNORMAL);
-     Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 
 end;
 
@@ -359,14 +373,14 @@ procedure TForm3.WebCLS1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://www.ricardonarvaja.info', nil, nil,
     SW_SHOWNORMAL);
-     Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 end;
 
 procedure TForm3.elegram1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://t.me/crackslatinos', nil, nil,
     SW_SHOWNORMAL);
-  Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 end;
 
 procedure TForm3.EnIngls1Click(Sender: TObject);
@@ -374,7 +388,7 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EN%20INGLES/',
     nil, nil, SW_SHOWNORMAL);
-  Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 end;
 
 procedure TForm3.Examenes1Click(Sender: TObject);
@@ -382,23 +396,21 @@ begin
   ShellExecute(Handle, 'open',
     'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/EXAMENES/',
     nil, nil, SW_SHOWNORMAL);
-  Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 end;
 
 procedure TForm3.Exit1Click(Sender: TObject);
 begin
-  Label2.Caption := 'Cerrando';
+  Label2.Caption := str2;
   self.Close;
   halt;
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
-var
-  hola: string;
+
 begin
-  hola := 'TEU Ricardo Narvaja Curso IDA desde Cero 27-12-17 v1.4';
-  Form3.Caption := hola; // copia el string en caption del form
-  Requerimientos.Lines.Insert(0, hola);
+  Form3.Caption := str3; // copia el string en caption del form
+  Requerimientos.Lines.Insert(0, str3);
   // inserta en la linea 0 del requerimiento
 end;
 
@@ -406,23 +418,23 @@ procedure TForm3.GoogleGroups1Click(Sender: TObject);
 begin
   ShellExecute(Handle, 'open', 'http://groups.google.com/group/CrackSLatinoS',
     nil, nil, SW_SHOWNORMAL);
-  Label2.Caption := 'Abriendo web...';
+  Label2.Caption := str1;
 
 end;
 
 // Curso 1
 procedure TForm3.AboutTEUCLS1Click(Sender: TObject);
 begin
-  ShowMessage('Creado con Fines Educativos , saludos Apuromafo');
+  ShowMessage(str10);
   if HayInternet then
   begin
-    ShowMessage('Estás Conectado a internet');
-    Label2.Caption := 'Estás Conectado a internet';
+    ShowMessage(str4);
+    Label2.Caption := str4;
   end
   else
   begin
-    ShowMessage('Desconectado de internet');
-    Label2.Caption := 'Estás Desconectado a internet';
+    ShowMessage(str5);
+    Label2.Caption := str5;
   end;
 
 end;
@@ -432,10 +444,10 @@ begin
   if not DirectoryExists(ExtractFilePath(Application.ExeName) + carpeta) then
   begin
     CreateDir(ExtractFilePath(Application.ExeName) + carpeta);
-    Label2.Caption := 'creada Carpeta Curso';
+    Label2.Caption := str6;
   end;
 
-  Label2.Caption := 'Abriendo la carpeta contenedora...';
+  Label2.Caption := str9;
   ShellExecute(Application.Handle, PChar('open'),
     PChar(ExtractFilePath(Application.ExeName) + carpeta), PChar(''),
     PChar(nil), SW_NORMAL);
@@ -501,8 +513,8 @@ begin
     // rutina 2 copia de compara el numero y le asigna el valor de source y destino
     // segun el array de curso y nombre
     prueba := Copy(compara, 6, length(compara));
-    // StatusBar1.Panels.Add;
-    Label2.Caption := 'Bajando el curso' + prueba;
+    //
+    Label2.Caption := str12 + prueba;
     I2 := strtoint(prueba) - 1;
     SourceFile := CursoArray[I2];
     DestFile := carpeta + NombreArray[I2];
@@ -518,20 +530,20 @@ begin
     begin
       If CheckBox1.Checked then
       begin
-        ShowMessage('Download ok!');
+        ShowMessage(str11);
       end;
-      Label2.Caption := 'descargado!';
+      Label2.Caption := str13;
 
       If CheckBox2.Checked then
       begin
-        Label2.Caption := 'Abriendo archivo...';
+        Label2.Caption := str7;
         ShellExecute(Application.Handle, PChar('open'),
           PChar(ExtractFilePath(Application.ExeName) + DestFile), PChar(''),
           PChar(nil), SW_NORMAL)
       end;
     end
     else
-      ShowMessage('Error in this web http:// ' + SourceFile)
+      ShowMessage(str8 + SourceFile)
 
   end;
 

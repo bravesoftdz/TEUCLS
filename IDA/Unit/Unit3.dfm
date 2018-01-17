@@ -1,9 +1,10 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu, biMinimize]
-  ClientHeight = 253
-  ClientWidth = 525
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  ClientHeight = 268
+  ClientWidth = 535
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,8 +15,8 @@ object Form3: TForm3
   OldCreateOrder = False
   OnCreate = FormCreate
   DesignSize = (
-    525
-    253)
+    535
+    268)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -28,14 +29,14 @@ object Form3: TForm3
   object Label2: TLabel
     Left = 8
     Top = 222
-    Width = 505
-    Height = 19
+    Width = 217
+    Height = 13
     Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace
     ParentColor = False
   end
   object Requerimientos: TMemo
-    Left = 216
+    Left = 220
     Top = 18
     Width = 297
     Height = 147
@@ -162,8 +163,8 @@ object Form3: TForm3
     TabOrder = 12
   end
   object Button11: TButton
-    Left = 231
-    Top = 180
+    Left = 279
+    Top = 171
     Width = 146
     Height = 36
     Caption = 'Abrir Carpeta Contenedora'
