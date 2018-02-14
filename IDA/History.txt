@@ -9,6 +9,10 @@ Leyenda:
 [%] Arreglado(bugs)
 [^] Actualizaciones y / o Información 
 =================================
+Version 1.6 2018-02-14
+=================================
+[+]Curso 62
+=================================
 Version 1.5 2018-01-11
 =================================
 [*] mejorado la rutina de strings 

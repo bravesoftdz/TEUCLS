@@ -29,7 +29,7 @@ object Form3: TForm3
   object Label2: TLabel
     Left = 8
     Top = 222
-    Width = 217
+    Width = 3
     Height = 13
     Anchors = [akLeft, akTop, akRight]
     Color = clBtnFace

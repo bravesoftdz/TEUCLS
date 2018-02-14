@@ -146,6 +146,8 @@ resourcestring
   curso59 = 'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/59-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2059%20Pass%20a.7z';
   curso60 = 'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/60-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2060.7z';
   curso61 = 'http://ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/61-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2061%20Pass%20a.7z';
+  curso62 = 'http://www.ricardonarvaja.info/WEB/INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO/62-INTRODUCCION%20AL%20REVERSING%20CON%20IDA%20PRO%20DESDE%20CERO%20PARTE%2062.7z';
+
   carpeta = 'Curso/';
   nombre1 = 'IDA001.7z';
   nombre2 = 'IDA002.7z';
@@ -208,9 +210,12 @@ resourcestring
   nombre59 = 'IDA059 pass a.7z';
   nombre60 = 'IDA060.7z';
   nombre61 = 'IDA061 pass a.7z';
+  // extension 0-1
+  nombre62 = 'IDA062.7z';
+
   str1 = 'Abriendo web...';
   str2 = 'Cerrando';
-  str3 = 'TEU Ricardo Narvaja Curso IDA desde Cero 11-01-2018 v1.5';
+  str3 = 'TEU Ricardo Narvaja Curso IDA desde Cero 14-02-2018 v1.6';
   str4 = 'Estás Conectado a internet';
   str5 = 'Estás Desconectado a internet';
   str6 = 'creada Carpeta Curso';
@@ -221,7 +226,7 @@ resourcestring
   str11 = 'Download ok!';
   str12 = 'Bajando el curso';
   str13 = 'descargado!';
-  str14 = 'Curso 61';
+  str14 = 'Curso 62';
 
 implementation
 
@@ -340,7 +345,7 @@ end;
 procedure TForm3.N61xx1Click(Sender: TObject);
 begin
   Button1.Caption := 'Curso 61';
-  Button2.Caption := str14;
+  Button2.Caption := 'Curso 62';
   Button3.Caption := str14;
   Button4.Caption := str14;
   Button5.Caption := str14;
@@ -471,7 +476,7 @@ const
     curso31, curso32, curso33, curso34, curso35, curso36, curso37, curso38,
     curso39, curso40, curso41, curso42, curso43, curso44, curso45, curso46,
     curso47, curso48, curso49, curso50, curso51, curso52, curso53, curso54,
-    curso55, curso56, curso57, curso58, curso59, curso60, curso61];
+    curso55, curso56, curso57, curso58, curso59, curso60, curso61,curso62];
   NombreArray: TArray<String> = [nombre1, nombre2, nombre3, nombre4, nombre5,
     nombre6, nombre7, nombre8, nombre9, nombre10, nombre11, nombre12, nombre13,
     nombre14, nombre15, nombre16, nombre17, nombre18, nombre19, nombre20,
@@ -480,7 +485,7 @@ const
     nombre35, nombre36, nombre37, nombre38, nombre39, nombre40, nombre41,
     nombre42, nombre43, nombre44, nombre45, nombre46, nombre47, nombre48,
     nombre49, nombre50, nombre51, nombre52, nombre53, nombre54, nombre55,
-    nombre56, nombre57, nombre58, nombre59, nombre60, nombre61];
+    nombre56, nombre57, nombre58, nombre59, nombre60, nombre61,nombre62];
 
 begin
 
