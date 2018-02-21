@@ -3,8 +3,8 @@ object Form3: TForm3
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  ClientHeight = 268
-  ClientWidth = 535
+  ClientHeight = 357
+  ClientWidth = 793
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object Form3: TForm3
   OldCreateOrder = False
   OnCreate = FormCreate
   DesignSize = (
-    535
-    268)
+    793
+    357)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -35,16 +35,24 @@ object Form3: TForm3
     Color = clBtnFace
     ParentColor = False
   end
+  object Label3: TLabel
+    Left = 500
+    Top = -1
+    Width = 31
+    Height = 13
+    Caption = 'Label3'
+  end
   object Requerimientos: TMemo
-    Left = 220
+    Left = 212
     Top = 18
-    Width = 297
+    Width = 261
     Height = 147
     Lines.Strings = (
       'Requerimientos:'
       'IDA 6x o 7x'
       '7zip para descomprimir los archivos'
-      'Procesador de texto (word o similar que habra docx)'
+      'Procesador de texto (word o similar que habra '
+      'docx)'
       'Navegador configurado (internet 7 y superior)'
       'Espacio Suficiente (al minuto son  algunos mb)'
       ''
@@ -163,13 +171,22 @@ object Form3: TForm3
     TabOrder = 12
   end
   object Button11: TButton
-    Left = 279
-    Top = 171
+    Left = 247
+    Top = 180
     Width = 146
     Height = 36
     Caption = 'Abrir Carpeta Contenedora'
     TabOrder = 13
     OnClick = Button11Click
+  end
+  object Memo2: TMemo
+    Left = 500
+    Top = 32
+    Width = 285
+    Height = 305
+    Lines.Strings = (
+      'Memo2')
+    TabOrder = 14
   end
   object MainMenu1: TMainMenu
     Left = 65480
@@ -248,6 +265,10 @@ object Form3: TForm3
       object Source1: TMenuItem
         Caption = 'Source'
         OnClick = Source1Click
+      end
+      object CheckUpdates1: TMenuItem
+        Caption = 'Check Updates'
+        OnClick = CheckUpdates1Click
       end
     end
   end

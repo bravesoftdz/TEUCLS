@@ -6,8 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, WinInet, Winsock,
-  URLMon, ShellApi, Vcl.Menus, Vcl.ComCtrls;
-// (getip las primeras 2 y download las siguientes)
+  URLMon, ShellApi, Vcl.Menus, Vcl.ComCtrls, System.JSON;
+// System json para verificar updates
+// sysutils para la comparacion de strings
+// winapi windows y message y wininet on winsock, urlmon para los links de internet
+// shellapi para la ejecución automática
 
 type
   TForm3 = class(TForm)
@@ -48,6 +51,9 @@ type
     Button11: TButton;
     Label1: TLabel;
     Label2: TLabel;
+    CheckUpdates1: TMenuItem;
+    Memo2: TMemo;
+    Label3: TLabel;
     procedure WebCLS1Click(Sender: TObject);
     procedure elegram1Click(Sender: TObject);
     // procedure About1Click(Sender: TObject);
@@ -69,6 +75,7 @@ type
     procedure Source1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button11Click(Sender: TObject);
+    procedure CheckUpdates1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -212,10 +219,10 @@ resourcestring
   nombre61 = 'IDA061 pass a.7z';
   // extension 0-1
   nombre62 = 'IDA062.7z';
-
+  str0 = '1.7';
   str1 = 'Abriendo web...';
   str2 = 'Cerrando';
-  str3 = 'TEU Ricardo Narvaja Curso IDA desde Cero 14-02-2018 v1.6';
+  str3 = 'TEU Ricardo Narvaja Curso IDA desde Cero 15-02-2018 v';
   str4 = 'Estás Conectado a internet';
   str5 = 'Estás Desconectado a internet';
   str6 = 'creada Carpeta Curso';
@@ -226,7 +233,8 @@ resourcestring
   str11 = 'Download ok!';
   str12 = 'Bajando el curso';
   str13 = 'descargado!';
-  str14 = 'Curso 62';
+  str14 = 'Curso 62'; // Ultimo curso que se tenga
+  str15 = 'History : Changelog';
 
 implementation
 
@@ -249,6 +257,34 @@ begin
   except
     Result := False;
   end;
+end;
+
+function CompareStrings(string1, string2: string): String;
+
+var
+  Result2: Integer;
+  // Result: String;
+begin
+
+  // Compare some strings
+  Result2 := ansicomparestr(string1, string2);
+
+  if Result2 < 0 then
+  begin
+    // ShowMessage(string1 + ' < ' + string2);
+    Result := '<';
+  end;
+  if Result2 = 0 then
+  begin
+    // ShowMessage(string1 + ' = ' + string2);
+    Result := '=';
+  end;
+  if Result2 > 0 then
+  begin
+    // ShowMessage(string1 + ' > ' + string2);
+    Result := '>';
+  end;
+
 end;
 
 // visibles del 1 al 10
@@ -414,9 +450,10 @@ end;
 procedure TForm3.FormCreate(Sender: TObject);
 
 begin
-  Form3.Caption := str3; // copia el string en caption del form
-  Requerimientos.Lines.Insert(0, str3);
+  Form3.Caption := str3 + str0; // copia el string en caption del form
+  Requerimientos.Lines.Insert(0, str3 + str0);
   // inserta en la linea 0 del requerimiento
+  Label3.Caption := str15;
 end;
 
 procedure TForm3.GoogleGroups1Click(Sender: TObject);
@@ -476,7 +513,7 @@ const
     curso31, curso32, curso33, curso34, curso35, curso36, curso37, curso38,
     curso39, curso40, curso41, curso42, curso43, curso44, curso45, curso46,
     curso47, curso48, curso49, curso50, curso51, curso52, curso53, curso54,
-    curso55, curso56, curso57, curso58, curso59, curso60, curso61,curso62];
+    curso55, curso56, curso57, curso58, curso59, curso60, curso61, curso62];
   NombreArray: TArray<String> = [nombre1, nombre2, nombre3, nombre4, nombre5,
     nombre6, nombre7, nombre8, nombre9, nombre10, nombre11, nombre12, nombre13,
     nombre14, nombre15, nombre16, nombre17, nombre18, nombre19, nombre20,
@@ -485,7 +522,7 @@ const
     nombre35, nombre36, nombre37, nombre38, nombre39, nombre40, nombre41,
     nombre42, nombre43, nombre44, nombre45, nombre46, nombre47, nombre48,
     nombre49, nombre50, nombre51, nombre52, nombre53, nombre54, nombre55,
-    nombre56, nombre57, nombre58, nombre59, nombre60, nombre61,nombre62];
+    nombre56, nombre57, nombre58, nombre59, nombre60, nombre61, nombre62];
 
 begin
 
@@ -552,6 +589,113 @@ begin
 
   end;
 
+end;
+
+procedure TForm3.CheckUpdates1Click(Sender: TObject);
+var
+  hola, hola2: string;
+  Carpeta2, DestFile, SourceFile: string;
+  JSonObject: TJSONObject;
+  JSonValue: TJSonValue;
+  JSonValue2: TJSonValue;
+  st: string;
+  // CurrentVersion: TJSonValue;
+  // Tags: TJSONArray;
+
+begin
+  if HayInternet then
+  begin
+
+    SourceFile :=
+      'https://api.github.com/repos/apuromafo/TEUCLS/releases/latest';
+    Carpeta2 := 'update/';
+    DestFile := Carpeta2 + 'value.json';
+    if not DirectoryExists(ExtractFilePath(Application.ExeName) + Carpeta2) then
+    begin
+      CreateDir(ExtractFilePath(Application.ExeName) + Carpeta2);
+    end;
+
+    if DownloadFile(SourceFile, DestFile) then
+    begin
+      // para no mostrar que estamos trabajando con memo2
+      Memo2.Lines.LoadFromFile(DestFile, TEncoding.UTF8);
+      try
+        Memo2.Lines.BeginUpdate;
+        st := Memo2.Text;
+        JSonObject := TJSONObject.Create;
+        JSonValue := JSonObject.ParseJSONValue(st);
+        JSonValue2 := JSonObject.ParseJSONValue(st);
+        // Label2.Caption := hola;
+        // showmessage(JSonValue.ClassName);
+        if TJSONObject.ParseJSONValue(st).ClassName = 'TJSONObject' then
+        begin
+          JSonValue := (JSonValue as TJSONObject).Get('tag_name').JSonValue;
+          JSonValue2 := (JSonValue2 as TJSONObject).Get('body').JSonValue;
+          Memo2.Clear;
+          hola2 := '';
+          hola := '';
+          hola := stringreplace(JSonValue.ToString, '"', '',
+            [rfReplaceAll, rfIgnoreCase]);
+          hola2 := (CompareStrings(hola, str0));
+
+          if hola2 = '<' then
+          begin
+            ShowMessage
+              ('no hay nuevas updates, estas usando una version Superior!');
+          end;
+          if hola2 = '=' then
+          begin
+            ShowMessage('Esta es la versión Actual');
+          end;
+          if hola2 = '>' then
+          begin
+            ShowMessage('hay nuevas updates');
+          end;
+          hola := '';
+          hola2 := '';
+
+          Memo2.Lines.add(stringreplace(JSonValue2.ToString, '"', '',
+            [rfReplaceAll, rfIgnoreCase]));
+          Memo2.SelStart := 0;
+          Memo2.SelLength := 0;
+
+          JSonObject.Free;
+          Memo2.Lines.EndUpdate;
+        end
+
+        {
+          if hola = 'TJSONArray' then
+          begin
+          // Memo2.Lines.Add(inttostr(Memo1.Lines.Count));
+          Tags := TJSONObject.ParseJSONValue(Memo2.Text) as TJSONArray;
+
+          CurrentVersion := Tags.Items[0];
+          with CurrentVersion do
+          begin
+
+          name := GetValue<string>('tag_name');
+          Memo2.Lines.Add(name);
+
+          end;
+
+          end;
+        }
+
+        else
+
+        begin
+        Memo2.Lines.BeginUpdate;
+        Memo2.Lines.EndUpdate;
+        end;
+
+      except
+        on EFOpenError do; // swallow this error
+      end;
+
+    end;
+    // ShowMessage(hola);
+
+  end;
 end;
 
 { ejemplo del boton de forma individual
