@@ -621,7 +621,6 @@ begin
       Memo2.Lines.LoadFromFile(DestFile, TEncoding.UTF8);
       try
         Memo2.Lines.BeginUpdate;
-        Memo2.Visible := False;
         st := Memo2.Text;
         JSonObject := TJSONObject.Create;
         JSonValue := JSonObject.ParseJSONValue(st);
@@ -652,7 +651,6 @@ begin
           begin
             ShowMessage('hay nuevas updates');
           end;
-
           hola := '';
           hola2 := '';
 
@@ -662,9 +660,7 @@ begin
           Memo2.SelLength := 0;
 
           JSonObject.Free;
-
           Memo2.Lines.EndUpdate;
-          Memo2.Visible := True;
         end
 
         {
@@ -688,8 +684,8 @@ begin
         else
 
         begin
-          Memo2.Lines.BeginUpdate;
-          Memo2.Lines.EndUpdate;
+        Memo2.Lines.BeginUpdate;
+        Memo2.Lines.EndUpdate;
         end;
 
       except
